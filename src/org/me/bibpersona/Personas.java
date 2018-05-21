@@ -5,6 +5,9 @@
  */
 package org.me.bibpersona;
 
+import java.util.Objects;
+import org.me.mibiblioteca.BibliotecaCadena;
+
 /**
  *
  * @author juanpab
@@ -22,7 +25,7 @@ public class Personas {
      * @param apellidos the apellidos to set
      */
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        this.apellidos = BibliotecaCadena.aTitulo(apellidos);
     }
 
     /**
@@ -36,7 +39,7 @@ public class Personas {
      * @param nombres the nombres to set
      */
     public void setNombres(String nombres) {
-        this.nombres = nombres;
+        this.nombres = BibliotecaCadena.aTitulo(nombres);
     }
 
     /**
@@ -50,26 +53,64 @@ public class Personas {
      * @param edad the edad to set
      */
     public void setEdad(int edad) {
-        this.edad = edad;
+        this.edad = edad >= 0 ? edad : -edad;
     }
     private String apellidos;
     private String nombres;
     private int edad;
 
+   
     public Personas() {
-    }
-
-    public Personas(String apellidos, String nombres, int edad) {
-        this.apellidos = "";
-        this.nombres = "";
-        this.edad = 10;
-        
+        apellidos = "";
+        nombres = "";
+        edad = 0;        
     }
 
     @Override
     public String toString() {
-        return "Personas{" + "apellidos=" + apellidos + ", nombres=" + nombres + ", edad=" + edad + '}';
+        return apellidos  +  "\t" + nombres  +  "\t" + edad;
     }
+    
+    public Personas(String apellidos, String nombres, int edad) {
+        this.apellidos = BibliotecaCadena.aTitulo(apellidos);
+        this.nombres = BibliotecaCadena.aTitulo(nombres);
+        this.edad = edad >= 0 ? edad : -edad;        
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.apellidos);
+        hash = 17 * hash + Objects.hashCode(this.nombres);
+        hash = 17 * hash + this.edad;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Personas other = (Personas) obj;
+        if (this.edad != other.edad) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombres, other.nombres)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     
     
     
