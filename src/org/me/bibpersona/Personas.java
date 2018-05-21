@@ -62,7 +62,8 @@ public class Personas {
     public Personas(String apellidos, String nombres, int edad) {
         this.apellidos = "";
         this.nombres = "";
-        this.edad = 0;
+        this.edad = 10;
+        
     }
 
     @Override
