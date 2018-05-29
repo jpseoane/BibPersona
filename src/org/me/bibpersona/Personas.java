@@ -13,68 +13,78 @@ import org.me.mibiblioteca.BibliotecaCadena;
  * @author juanpab
  */
 public class Personas {
+        
+    private String apellidos;
+    private String nombres;
+    private int edad;
+    
+    /**
+     * Constructor por defecto
+     */
+    public Personas() {
+        apellidos = "";
+        nombres = "";
+        edad = 0;        
+    }
+    
+    /**
+     * Constructor de la clase
+     * @param apellidos
+     * @param nombres
+     * @param edad
+     */
+    public Personas(String apellidos, String nombres, int edad) {
+        this.apellidos = BibliotecaCadena.aTitulo(apellidos);
+        this.nombres = BibliotecaCadena.aTitulo(nombres);
+        this.edad = edad >= 0 ? edad : -edad;        
+    }
 
     /**
-     * @return the apellidos
+     * @return  devuelve los apellidos
      */
     public String getApellidos() {
         return apellidos;
     }
 
     /**
-     * @param apellidos the apellidos to set
+     * @param apellidos para setear los apellidos
      */
     public void setApellidos(String apellidos) {
         this.apellidos = BibliotecaCadena.aTitulo(apellidos);
     }
 
     /**
-     * @return the nombres
+     * @return devuelve los nombres
      */
     public String getNombres() {
         return nombres;
     }
 
     /**
-     * @param nombres the nombres to set
+     * @param nombres para setear los nombres
      */
     public void setNombres(String nombres) {
         this.nombres = BibliotecaCadena.aTitulo(nombres);
     }
 
-    /**
-     * @return the edad
-     */
+    
     public int getEdad() {
         return edad;
     }
-
+    
     /**
-     * @param edad the edad to set
+     * @param edad para setear la edad
      */
     public void setEdad(int edad) {
         this.edad = edad >= 0 ? edad : -edad;
-    }
-    private String apellidos;
-    private String nombres;
-    private int edad;
+    }      
 
-   
-    public Personas() {
-        apellidos = "";
-        nombres = "";
-        edad = 0;        
-    }
-
+    /**
+     * Devuelve una cadena concatenando los miembros de informacion separados por tabulaciones
+     */
     @Override
     public String toString() {
         return apellidos  +  "\t" + nombres  +  "\t" + edad;
-    }
-    
-    public Personas(String apellidos, String nombres, int edad) {
-        this.apellidos = BibliotecaCadena.aTitulo(apellidos);
-        this.nombres = BibliotecaCadena.aTitulo(nombres);
-        this.edad = edad >= 0 ? edad : -edad;        
     }
 
     @Override
